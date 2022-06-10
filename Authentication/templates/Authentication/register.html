@@ -1,0 +1,104 @@
+<html>
+
+    <head>
+    
+      {% load static %}
+    
+        <!-- Bootstrap -->
+        <link href="{% static 'MatchViajesApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    
+         <!-- Fonts -->
+        
+         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+         
+    
+        <!-- Styles -->
+        <link href="{% static 'MatchViajesApp/css/gestion.css' %}" rel="stylesheet">
+    </head>
+    
+    <body>
+        
+        <h1 class="site-heading text-center text-white d-none d-lg-block">
+          
+            <span class="site-heading-lower">Match Viajes</span>
+        </h1>
+    
+    <!-- Contenido cambiante-->
+    <div class="contenedorFormulario">
+        <h2 style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto; font-size: 1.5rem;">
+            Registrate
+        </h2>
+        <form method="POST" action="" style="color: white; text-align: center; margin-left: 20px; margin-right: 20px;">
+          {% csrf_token %}
+          <table>
+            <tr>
+              <td><input type="text" name="username" placeholder="Nombre de Usuario"></td>
+            </tr>
+            <tr>
+              <td><input type="email" name="email" placeholder="Email"></td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <td><input type="text" name="first_name" placeholder="Nombre"></td>
+              <td><input type="text" name="last_name" placeholder="Apellido"></td>
+            </tr>
+            <tr>
+              <td><input type="password" name="password1" placeholder="Contraseña"></td>
+              <td><input type="password" name="password2" placeholder="Confirmar Contraseña"></td>
+            </tr>
+          </table><br>
+          <input class="button" type='submit' value='Crear Usuario'><br><br>
+          <span>
+            Ya tenés cuenta?&nbsp; 
+            <a href="{% url 'Login' %}" class="link">Ingresá</a>
+          </span>
+        </form>    
+        
+        {% for message in messages %}
+          <p style="color: rgb(202, 35, 35); text-align: center;" id="messages"><b>{{message}}</b></p>
+        {% endfor %}
+    </div>
+        <!-- Footer -->
+        <footer class="footer text-faded text-center py-5">
+          <div class="container">
+            <p class="m-0">
+                <a href="#" class="link">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+                <a href="#" class="link">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+                <a href="#" class="link">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+            </p>
+            <p class="m-0 mbt">
+                <a href="sample.html" class="link">Política de privacidad</a> ·
+                <a href="sample.html" class="link">Aviso legal</a> ·
+                <a href="sample.html" class="link">Cookies</a>
+            </p>
+            <p class="m-0 mbt1">&copy; Match Viajes 2022</p>
+          </div>
+        </footer>
+    
+        <!-- Bootstrap -->
+        <script src="{% static 'MatchViajesApp/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'MatchViajesApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    
+    </body>
+    
+    
+    </html>
+ 
+ 

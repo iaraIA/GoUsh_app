@@ -1,0 +1,40 @@
+{% extends "MatchViajesApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+  <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'MatchViajesApp/img/dedo.jpg' %}" alt="">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">Encontrá tu viaje</span>
+          </h2>
+          <p class="mb-3">Sabemos que tu tiempo vale por eso simplificamos la forma de ofrecer y encontrar viajes.
+          </p>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'MatchViajesApp/img/compartido.jpg' %}" alt="">
+        <div class="intro-text right-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">Ahorrá</span>
+          </h2>
+          <p class="mb-3">Si vas a hacer un viaje publicalo para compartir tu viaje con otras personas y dividir los gastos.
+          </p>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+    {% endblock %}

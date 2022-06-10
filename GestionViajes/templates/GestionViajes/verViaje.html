@@ -1,0 +1,60 @@
+{% extends "MatchViajesApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contenedorFormulario">
+    <h2 style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto; font-size: 1.5rem;">
+        BUSCÁ TU VIAJE
+    </h2>
+
+    <p style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto;">
+        Ingresá los filtros necesarios para encontrar los viajes disponibles de acuerdo a tu necesidad.<br> 
+        Al apretar en "Me sumo" se notifica al conductor y será él quien via mail se comunicará con vos para aceptar y coordinar el viaje
+    </p>
+
+    <form action="" method="GET" style="text-align: center;"> 
+        {% csrf_token %}
+        <table style="color: rgba(255, 255, 255); margin: 20px auto;">{{formulario}}</table>
+        <input class="button" type="submit" value="Buscar" style="width:150px">
+    </form>
+    {% if not viajes %}
+        <br>
+        <p style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto;">
+            No se han encontrado viajes 
+        </p>
+    {% else %}
+        <table class="tablaViajes">
+            <tr class="tablaViajes">
+                <th class="tablaViajes" style="width: 150px;">Recorrido</th>
+                <th class="tablaViajes" style="width: 150px;">Fecha</th>
+                <th class="tablaViajes" style="width: 200px;">Conductor</th>
+                <th class="tablaViajes" style="width: 500px;">Observaciones</th>
+            </tr>
+            {% for viaje in viajes %}
+            <tr class="tablaViajes">
+                <td class="tablaViajes" style="width: 150px;">{{ viaje.origen }} - {{ viaje.destino }}</td>
+                <td class="tablaViajes" style="width: 150px;">{{ viaje.fecha }}</td>
+                <td class="tablaViajes" style="width: 200px;">{{ viaje.conductor.first_name }} {{ viaje.conductor.last_name }}</td>
+                <td class="tablaViajes" style="width: 500px;">{{ viaje.observaciones }}</td>
+                <td>
+                
+                {% if viaje.id not in viajesPasajero %}
+                    <form action="" method="POST" style="text-align: center;"> 
+                        {% csrf_token %}
+                        <input type="hidden" name="viaje_id" value="{{viaje.id}}">
+                        <input type="hidden" name="user_id" value="{{user.id}}">
+                        <input class="buttonMeSumo" type="submit" value="Me sumo">
+                    </form>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    {% endif %}
+    
+</div>
+
+{% endblock %}

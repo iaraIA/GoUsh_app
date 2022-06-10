@@ -1,0 +1,27 @@
+{% extends "MatchViajesApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contenedorFormulario">
+    {% if 'valido' in request.GET %}
+
+        <h2 style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto; font-size: 1rem;">
+            Viaje cargado correctamente!
+        </h2>
+
+    {% endif %}
+    <h2 style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto; font-size: 1.5rem;">
+        CARGÁ TU VIAJE
+    </h2>
+
+    <form action="" method="POST" style="text-align: center; margin-left: 10px; margin-right: 10px;"> 
+        {% csrf_token %}
+        <table style="color: rgba(255, 255, 255); margin: 20px auto;">{{formulario.as_table}}</table>
+        <input type="hidden" name="conductor_id" value="{{user.id}}">
+        <input class="button" type="submit" value="Enviar" style="width:150px">
+    </form>
+</div>
+
+{% endblock %}

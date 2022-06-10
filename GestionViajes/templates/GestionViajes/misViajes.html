@@ -1,0 +1,36 @@
+{% extends "MatchViajesApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contenedorFormulario">
+    {% if not viajes %}
+        <p style="color: rgba(255, 255, 255); text-align: center; margin: 15px auto;">
+            No tenés viajes cargados 
+        </p>
+    {% else %}
+        <table class="tablaViajes">
+            <tr class="tablaViajes">
+                <th class="tablaViajes" style="width: 150px;">Recorrido</th>
+                <th class="tablaViajes" style="width: 150px;">Fecha</th>
+                <th class="tablaViajes" style="width: 500px;">Observaciones</th>
+            </tr>
+            {% for viaje in viajes %}
+            <tr class="tablaViajes">
+                <td class="tablaViajes" style="width: 150px;">{{ viaje.origen }} - {{ viaje.destino }}</td>
+                <td class="tablaViajes" style="width: 150px;">{{ viaje.fecha }}</td>
+                <td class="tablaViajes" style="width: 500px;">{{ viaje.observaciones }}</td>
+                <td>
+                    <form action="" method="POST" style="text-align: center;">
+                        {% csrf_token %}
+                        <input type="hidden" name="viaje_id" value="{{viaje.id}}">
+                        <input class="buttonMeSumo" type="submit" value="Borrar">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}  
+</div>
+{% endblock %}
