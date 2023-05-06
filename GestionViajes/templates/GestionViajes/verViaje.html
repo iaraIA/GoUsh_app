@@ -31,6 +31,8 @@
                 <th class="tablaViajes" style="width: 150px;">Fecha</th>
                 <th class="tablaViajes" style="width: 200px;">Conductor</th>
                 <th class="tablaViajes" style="width: 500px;">Observaciones</th>
+                <th class="tablaViajes" style="width: 100px;">Plazas Disponibles</th>
+                <th class="tablaViajes" style="width: 100px;">Acción</th>
             </tr>
             {% for viaje in viajes %}
             <tr class="tablaViajes">
@@ -38,17 +40,24 @@
                 <td class="tablaViajes" style="width: 150px;">{{ viaje.fecha }}</td>
                 <td class="tablaViajes" style="width: 200px;">{{ viaje.conductor.first_name }} {{ viaje.conductor.last_name }}</td>
                 <td class="tablaViajes" style="width: 500px;">{{ viaje.observaciones }}</td>
+                <td class="tablaViajes" style="width: 100px;">{{ viaje.plazas_disponibles }}</td>
                 <td>
                 
-                {% if viaje.id not in viajesPasajero %}
-                    <form action="" method="POST" style="text-align: center;"> 
-                        {% csrf_token %}
-                        <input type="hidden" name="viaje_id" value="{{viaje.id}}">
-                        <input type="hidden" name="user_id" value="{{user.id}}">
-                        <input class="buttonMeSumo" type="submit" value="Me sumo">
-                    </form>
+                    {% if viaje.conductor != user %}
+                    <td class="tablaViajes" style="width: 150px;">{{ viaje.plazas_disponibles }} plazas disponibles</td>
+                    <td>
+                    {% if viaje.id not in viajesPasajero %}
+                        <form action="" method="POST" style="text-align: center;"> 
+                            {% csrf_token %}
+                            <input type="hidden" name="viaje_id" value="{{viaje.id}}">
+                            <input type="hidden" name="user_id" value="{{user.id}}">
+                            <input class="buttonMeSumo" type="submit" value="Me sumo">
+                        </form>
+                    {% endif %}
+                    </td>
+                {% else %}
+                    <td colspan="2" class="tablaViajes" style="width: 300px;">Viaje cargado por vos</td>
                 {% endif %}
-                </td>
             </tr>
             {% endfor %}
 
